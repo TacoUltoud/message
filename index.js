@@ -10,8 +10,22 @@ app.get("/",function(req,res){
 })
 
 app.post("/send",function(req,res){
-  res.send(req.body);
+  var tmp = req.body;
+  if(!check_email(tmp.email)){
+    tmp.email = "wrong email format"; 
+    res.send(tmp);
+  }
+  else res.send(tmp);
 })
+
+function check_email(email){
+  const rule = /[a-zA-Z0-9]+@[a-zA-Z0-9.]+/;
+  return rule.test(email);
+}
+
+module.exports = {
+  check_email
+}
 
 app.listen(8080,() => {
   console.log("listen on port 8080");

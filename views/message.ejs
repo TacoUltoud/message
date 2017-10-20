@@ -22,7 +22,10 @@
       function appendOne(data){
         const messageBoard = document.getElementById("messageBoard");
         var tmp = document.createElement("div");
-        tmp.innerHTML = data.author + "<br/>" + data.email + "<br/>" + data.time + "<br/>" + data.message;
+        for(let key in data){
+          tmp.innerText += key + ": " + data[key] + "\n";
+        }
+        // tmp.innerText = data.author + "\n" + data.email + "\n" + data.time + "\n" + data.message + "\n"; 
         tmp.style = "border: solid 1px";
         messageBoard.appendChild(tmp);
       }
@@ -41,7 +44,8 @@
           },
           success: function(result){
             clear();
-            appendOne(result);
+            if(typeof result === "string") alert(result)
+            else appendOne(result);
           }
         })
         return false;
