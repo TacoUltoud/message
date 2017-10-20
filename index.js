@@ -6,10 +6,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine","ejs");
 
 app.get("/",function(req,res){
-  res.render("index");
+  res.render("message");
 })
 
-app.post("/message",function(req,res){
+app.post("/send",function(req,res){
   res.send(req.body);
 })
 

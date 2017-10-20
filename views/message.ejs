@@ -7,16 +7,18 @@
     <div id="messageBoard"></div>
     <form id="info" method="post" onsubmit="return addMessage()">
       Author
-      <input type="text" name="author"><br>
+      <input type="text" name="author">
       Email
       <input type="text" name="email"><br>
-      Time
-      <input type="text" name="time"><br>
-      Message
-      <textarea rows="4" cols="10" name="message"></textarea><br>
+      Message<br>
+      <textarea rows="4" cols="20" name="message"></textarea><br>
       <input type="submit" value="submit">
     </form>
     <script>
+      function clear(){
+        const form = document.getElementById("info");
+        form.reset();
+      }
       function appendOne(data){
         const messageBoard = document.getElementById("messageBoard");
         var tmp = document.createElement("div");
@@ -27,18 +29,18 @@
       function addMessage(){
         var author = document.forms["info"].author.value;
         var email = document.forms["info"].email.value;
-        var time = document.forms["info"].time.value;
         var message = document.forms["info"].message.value;
         $.ajax({
-          url: "/message",
+          url: "/send",
           type: "post",
           data:{
             author: author,
             email: email,
-            time: time,
+            time: new Date(),
             message: message
           },
           success: function(result){
+            clear();
             appendOne(result);
           }
         })
