@@ -9,6 +9,10 @@ app.get("/",function(req,res){
   res.render("index");
 })
 
+app.post("/message",function(req,res){
+  res.send(req.body);
+})
+
 app.listen(8080,() => {
   console.log("listen on port 8080");
 })

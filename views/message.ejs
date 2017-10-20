@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <form id="info" method="post" onsubmit="return addMessage()">
+      Author
+      <input type="text" name="author"><br>
+      Email
+      <input type="text" name="email"><br>
+      Time
+      <input type="text" name="time"><br>
+      Message
+      <textarea rows="4" cols="10" name="message"></textarea><br>
+      <input type="submit" value="submit">
+    </form>
+    <script>
+      function addMessage(){
+        var author = document.forms["info"].author.value;
+        var email = document.forms["info"].email.value;
+        var time = document.forms["info"].time.value;
+        var message = document.forms["info"].message.value;
+        $.ajax({
+          url: "/message",
+          type: "post",
+          data:{
+            author: author,
+            email: email,
+            time: time,
+            message: message
+          },
+          success: function(result){
+            console.log(result)
+          }
+        })
+        return false;
+      }
+    </script>
+  </body>
+</html>
