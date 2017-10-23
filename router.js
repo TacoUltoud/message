@@ -16,8 +16,14 @@ function check_email(email){
   return rule.test(email);
 }
 
+function check_message(message){
+  const rule = /^((?!fuck|shit).)*$/;
+  return rule.test(message);
+}
+
 module.exports = {
   getHomepage,
   send,
-  check_email
+  check_email,
+  check_message
 }
