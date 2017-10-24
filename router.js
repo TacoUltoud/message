@@ -4,11 +4,9 @@ function getHomepage(req,res){
 
 function send(req,res){
   var tmp = req.body;
-  if(!check_email(tmp.email)){
-    tmp.email = "wrong email format"; 
-    res.send(tmp);
-  }
-  else res.send(tmp);
+  if(!check_email(tmp.email)) tmp.email = "wrong email format"; 
+  if(!check_message(tmp.message)) tmp.message = "improper message"
+  res.send(tmp);
 }
 
 function check_email(email){
